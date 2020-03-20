@@ -2,10 +2,12 @@ from fastapi import FastAPI
 from arcgis.gis import GIS
 from arcgis.geocoding import geocode, reverse_geocode
 import pprint
+import firebase_admin
 pp = pprint.PrettyPrinter(indent=4)
 
 app = FastAPI()
 gis = GIS()
+default_app = firebase_admin.initialize_app()
             
 @app.get("/place/autocomplete/{search_query}/{current_location}")
 def autocomplete(search_query:str, current_location:str):
